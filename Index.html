@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Updates Info - Latest Firmware, ROMs, News & Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #1a365d;
+            --secondary: #3182ce;
+            --accent: #ed8936;
+            --success: #38a169;
+            --danger: #e53e3e;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gray: #718096;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 32px;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo .tagline {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s;
+            padding: 8px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 5px;
+            display: flex;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 18px 25px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box button:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 40px 0;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-item i {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-size: 17px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 40px 25px;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary);
+        }
+
+        .category-card i {
+            font-size: 48px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        .category-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .category-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .category-link:hover {
+            color: var(--primary);
+            gap: 12px;
+        }
+
+        /* Official Links */
+        .official-links {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f6f9fc 0%, #f1f5f9 100%);
+        }
+
+        .official-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .official-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .official-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .official-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .official-header i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .official-header h3 {
+            font-size: 22px;
+        }
+
+        .official-links-list {
+            padding: 25px;
+        }
+
+        .official-link-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .official-link-item:last-child {
+            border-bottom: none;
+        }
+
+        .link-info h4 {
+            font-size: 17px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .link-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .official-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            text-align: center;
+            min-width: 110px;
+        }
+
+        .official-btn:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .official-btn.official {
+            background: var(--success);
+        }
+
+        .official-btn.official:hover {
+            background: #2f855a;
+            box-shadow: 0 5px 15px rgba(56, 161, 105, 0.3);
+        }
+
+        /* Latest Updates */
+        .latest-updates {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .update-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .update-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .update-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .update-content {
+            padding: 25px;
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .update-category {
+            background: var(--secondary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .update-date {
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .update-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .update-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .update-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #2d3748;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 55, 72, 0.3);
+        }
+
+        /* Popular Devices */
+        .popular-devices {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f6f9fc 0%, #f1f5f9 100%);
+        }
+
+        .devices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+        }
+
+        .device-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .device-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .device-icon {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .device-card h4 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .device-card p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-col p {
+            color: #cbd5e0;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e0;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .hero h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 38px;
+            }
+            
+            .updates-grid, .official-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+            
+            .devices-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                background: transparent;
+                gap: 15px;
+                backdrop-filter: none;
+                border: none;
+            }
+            
+            .search-box input, .search-box button {
+                border-radius: 10px;
+                width: 100%;
+            }
+            
+            .search-box input {
+                background: rgba(255, 255, 255, 0.15);
+                padding: 18px 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h2 {
+                font-size: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .updates-grid, .official-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .devices-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .update-links {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                    <h1>Mobile<span>Updates.info</span></h1>
+                    <div class="tagline">Your Source for Mobile Firmware & ROMs</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#firmware"><i class="fas fa-download"></i> Firmware</a></li>
+                <li><a href="#official"><i class="fas fa-link"></i> Official Links</a></li>
+                <li><a href="#news"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="#devices"><i class="fas fa-mobile"></i> Devices</a></li>
+                <li><a href="#tools"><i class="fas fa-tools"></i> Tools</a></li>
+                <li><a href="#guides"><i class="fas fa-question-circle"></i> Guides</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Download Latest Mobile Firmware & Custom ROMs</h2>
+            <p>Find official firmware, custom ROMs, flash tools, and guides for Samsung, Xiaomi, OnePlus, Apple, and all major mobile brands. 100% safe downloads from verified sources.</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search for firmware, ROMs, or device...">
+                <button><i class="fas fa-search"></i> Search Downloads</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-download"></i>
+                    <div class="stat-number">12,500+</div>
+                    <div class="stat-text">Firmware Files</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="stat-number">3,200+</div>
+                    <div class="stat-text">Device Models</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-tools"></i>
+                    <div class="stat-number">85+</div>
+                    <div class="stat-text">Flash Tools</div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number">450K+</div>
+                    <div class="stat-text">Monthly Users</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="firmware">
+        <div class="container">
+            <div class="section-title">
+                <h2>Browse by Category</h2>
+                <p>Find exactly what you need with our organized mobile resources</p>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card">
+                    <i class="fas fa-download"></i>
+                    <h3>Official Firmware</h3>
+                    <p>Stock firmware for Samsung, Xiaomi, OnePlus, Google Pixel, Realme, Oppo, Vivo and more</p>
+                    <a href="#" class="category-link">Browse Files <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="category-card">
+                    <i class="fab fa-android"></i>
+                    <h3>Custom ROMs</h3>
+                    <p>LineageOS, Pixel Experience, MIUI ports, Evolution X, ArrowOS, CrDroid and more</p>
+                    <a href="#" class="category-link">Browse ROMs <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="category-card">
+                    <i class="fab fa-apple"></i>
+                    <h3>iOS & iPhone</h3>
+                    <p>IPSW files, jailbreak tools, beta profiles, signing services and iOS utilities</p>
+                    <a href="#" class="category-link">iOS Resources <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="category-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Flash Tools</h3>
+                    <p>Odin, SP Flash Tool, Fastboot, Mi Flash, Huawei eRecovery, QFIL and more</p>
+                    <a href="#" class="category-link">Download Tools <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="category-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Guides & Tutorials</h3>
+                    <p>Step-by-step flashing guides, rooting tutorials, customization and troubleshooting</p>
+                    <a href="#" class="category-link">View Guides <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="category-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Mobile News</h3>
+                    <p>Latest Android updates, iOS releases, security patches and mobile tech news</p>
+                    <a href="#" class="category-link">Read News <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Links Section -->
+    <section class="official-links" id="official">
+        <div class="container">
+            <div class="section-title">
+                <h2>Official Downloads & Resources</h2>
+                <p>Direct links to official firmware and tools from manufacturers</p>
+            </div>
+            
+            <div class="official-grid">
+                <!-- Android Firmware Card -->
+                <div class="official-card">
+                    <div class="official-header">
+                        <i class="fab fa-android"></i>
+                        <h3>Android Firmware</h3>
+                    </div>
+                    <div class="official-links-list">
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Samsung Firmware</h4>
+                                <p>Official Samsung firmware (SamMobile)</p>
+                            </div>
+                            <a href="https://www.sammobile.com/firmwares/" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Xiaomi ROMs</h4>
+                                <p>Official MIUI ROMs (Mi Download)</p>
+                            </div>
+                            <a href="https://c.mi.com/global/miuidownload/index" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>OnePlus Software</h4>
+                                <p>Official OxygenOS downloads</p>
+                            </div>
+                            <a href="https://www.oneplus.com/support/softwareupdates" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Google Pixel Images</h4>
+                                <p>Factory images for Pixel devices</p>
+                            </div>
+                            <a href="https://developers.google.com/android/images" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- iOS Firmware Card -->
+                <div class="official-card">
+                    <div class="official-header">
+                        <i class="fab fa-apple"></i>
+                        <h3>iOS & iPhone</h3>
+                    </div>
+                    <div class="official-links-list">
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Apple IPSW Downloads</h4>
+                                <p>Official iOS restore images (IPSW.me)</p>
+                            </div>
+                            <a href="https://ipsw.me/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>iOS Beta Program</h4>
+                                <p>Official Apple Beta Software Program</p>
+                            </div>
+                            <a href="https://beta.apple.com/" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Jailbreak Tools</h4>
+                                <p>Checkra1n, unc0ver, Taurine, Odyssey</p>
+                            </div>
+                            <a href="https://checkra.in/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>AltStore</h4>
+                                <p>iOS app sideloading without jailbreak</p>
+                            </div>
+                            <a href="https://altstore.io/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flash Tools Card -->
+                <div class="official-card" id="tools">
+                    <div class="official-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Flash Tools & Utilities</h3>
+                    </div>
+                    <div class="official-links-list">
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Odin Download</h4>
+                                <p>Official Samsung flashing tool</p>
+                            </div>
+                            <a href="https://odindownload.com/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>SP Flash Tool</h4>
+                                <p>MediaTek device flashing tool</p>
+                            </div>
+                            <a href="https://spflashtools.com/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Android Platform Tools</h4>
+                                <p>ADB & Fastboot from Google</p>
+                            </div>
+                            <a href="https://developer.android.com/studio/releases/platform-tools" target="_blank" class="official-btn official">Official</a>
+                        </div>
+                        
+                        <div class="official-link-item">
+                            <div class="link-info">
+                                <h4>Mi Flash Tool</h4>
+                                <p>Official Xiaomi flashing tool</p>
+                            </div>
+                            <a href="https://xiaomiflash.com/" target="_blank" class="official-btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Updates Section -->
+    <section class="latest-updates" id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Mobile Updates</h2>
+                <p>Recent firmware releases, ROM updates, and mobile technology news</p>
+            </div>
+            
+            <div class="updates-grid">
+                <div class="update-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Samsung Update" class="update-img">
+                    <div class="update-content">
+                        <div class="update-meta">
+                            <span class="update-category">Samsung</span>
+                            <span class="update-date"><i class="far fa-calendar"></i> June 18, 2023</span>
+                        </div>
+                        <h3>Samsung One UI 6.0 Beta Released for Galaxy S23 Series</h3>
+                        <p>Download the latest One UI 6.0 beta firmware for Galaxy S23, S23+ and S23 Ultra with Android 14 features and enhanced customization.</p>
+                        
+                        <div class="update-links">
+                            <a href="https://www.sammobile.com/firmwares/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download Firmware
+                            </a>
+                            <a href="https://forum.xda-developers.com/" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-info-circle"></i> Installation Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="update-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Custom ROM" class="update-img">
+                    <div class="update-content">
+                        <div class="update-meta">
+                            <span class="update-category">Custom ROM</span>
+                            <span class="update-date"><i class="far fa-calendar"></i> June 15, 2023</span>
+                        </div>
+                        <h3>LineageOS 21 Released Based on Android 14</h3>
+                        <p>The popular custom ROM LineageOS 21 is now available for over 50 devices with Android 14 as base, improved privacy features and performance.</p>
+                        
+                        <div class="update-links">
+                            <a href="https://download.lineageos.org/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download ROM
+                            </a>
+                            <a href="https://wiki.lineageos.org/" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-book"></i> Official Wiki
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="update-card">
+                    <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="iOS Update" class="update-img">
+                    <div class="update-content">
+                        <div class="update-meta">
+                            <span class="update-category">iOS</span>
+                            <span class="update-date"><i class="far fa-calendar"></i> June 12, 2023</span>
+                        </div>
+                        <h3>iOS 17 Public Beta Released for iPhone Users</h3>
+                        <p>Apple has released the first public beta of iOS 17 with new features for iPhone XR and later models, including StandBy mode and improved autocorrect.</p>
+                        
+                        <div class="update-links">
+                            <a href="https://ipsw.me/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download IPSW
+                            </a>
+                            <a href="https://beta.apple.com/" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-apple"></i> Apple Beta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Devices Section -->
+    <section class="popular-devices" id="devices">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Devices</h2>
+                <p>Find firmware and ROMs for these popular mobile devices</p>
+            </div>
+            
+            <div class="devices-grid">
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Samsung Galaxy S23</h4>
+                    <p>Firmware & ROMs</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Xiaomi Redmi Note 12</h4>
+                    <p>MIUI & Custom ROMs</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>OnePlus 11</h4>
+                    <p>OxygenOS & ROMs</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h4>iPhone 14 Pro</h4>
+                    <p>iOS & Jailbreak</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Google Pixel 7</h4>
+                    <p>Factory Images</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Samsung Galaxy A54</h4>
+                    <p>Firmware & ROMs</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Xiaomi Poco F5</h4>
+                    <p>MIUI & Custom ROMs</p>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Realme GT Neo 5</h4>
+                    <p>Realme UI & ROMs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>MobileUpdates.info</h3>
+                    <p>Your trusted source for mobile firmware, custom ROMs, and the latest updates in mobile technology. We provide safe, verified downloads with comprehensive guides.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#firmware"><i class="fas fa-download"></i> Firmware</a></li>
+                        <li><a href="#official"><i class="fas fa-link"></i> Official Links</a></li>
+                        <li><a href="#news"><i class="fas fa-newspaper"></i> Latest News</a></li>
+                        <li><a href="#devices"><i class="fas fa-mobile"></i> Popular Devices</a></li>
+                        <li><a href="#tools"><i class="fas fa-tools"></i> Flash Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Brand Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.sammobile.com/firmwares/" target="_blank"><i class="fas fa-external-link-alt"></i> Samsung Firmware</a></li>
+                        <li><a href="https://c.mi.com/global/miuidownload/index" target="_blank"><i class="fas fa-external-link-alt"></i> Xiaomi MIUI</a></li>
+                        <li><a href="https://www.oneplus.com/support/softwareupdates" target="_blank"><i class="fas fa-external-link-alt"></i> OnePlus Updates</a></li>
+                        <li><a href="https://developers.google.com/android/images" target="_blank"><i class="fas fa-external-link-alt"></i> Google Pixel</a></li>
+                        <li><a href="https://ipsw.me/" target="_blank"><i class="fas fa-external-link-alt"></i> Apple IPSW</a></li>
+                        <li><a href="https://www.realme.com/support/software-update" target="_blank"><i class="fas fa-external-link-alt"></i> Realme Updates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Developer Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://forum.xda-developers.com/" target="_blank"><i class="fas fa-external-link-alt"></i> XDA Developers</a></li>
+                        <li><a href="https://github.com/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub</a></li>
+                        <li><a href="https://developer.android.com" target="_blank"><i class="fas fa-external-link-alt"></i> Android Developers</a></li>
+                        <li><a href="https://developer.apple.com" target="_blank"><i class="fas fa-external-link-alt"></i> Apple Developers</a></li>
+                        <li><a href="https://sourceforge.net/" target="_blank"><i class="fas fa-external-link-alt"></i> SourceForge</a></li>
+                        <li><a href="https://www.mediafire.com/" target="_blank"><i class="fas fa-external-link-alt"></i> MediaFire</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MobileUpdates.info. All rights reserved. This site is not affiliated with any mobile manufacturers. All trademarks are property of their respective owners.</p>
+                <p style="margin-top: 10px;">All download links are from official sources or trusted community repositories. Use at your own risk.</p>
+                <p style="margin-top: 10px; font-size: 13px;">
+                    <a href="#" style="color: #cbd5e0; margin: 0 10px;">Disclaimer</a> | 
+                    <a href="#" style="color: #cbd5e0; margin: 0 10px;">Privacy Policy</a> | 
+                    <a href="#" style="color: #cbd5e0; margin: 0 10px;">Terms of Service</a> | 
+                    <a href="#" style="color: #cbd5e0; margin: 0 10px;">DMCA</a> | 
+                    <a href="#" style="color: #cbd5e0; margin: 0 10px;">Contact</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change menu icon
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Search functionality
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value.trim();
+            if (searchTerm !== '') {
+                alert(`Searching for: ${searchTerm}\nIn a real website, this would redirect to search results.`);
+            } else {
+                document.querySelector('.search-box input').focus();
+            }
+        });
+        
+        // Enter key for search
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-box button').click();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // Update active nav on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                        if(link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Animate stats counter
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const target = entry.target;
+                    const finalValue = parseInt(target.textContent);
+                    let currentValue = 0;
+                    const increment = finalValue / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if(currentValue >= finalValue) {
+                            target.textContent = finalValue.toLocaleString() + '+';
+                            clearInterval(timer);
+                        } else {
+                            target.textContent = Math.floor(currentValue).toLocaleString() + '+';
+                        }
+                    }, 30);
+                    
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+        
+        statNumbers.forEach(stat => {
+            observer.observe(stat);
+        });
+    </script>
+</body>
+</html>
